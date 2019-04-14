@@ -1,5 +1,3 @@
-
-
 FILENAME = "Test.dat"
 
 limit = 500 #數量
@@ -13,6 +11,6 @@ def getNumberDataList():
         splitedList = line.split(" ")
         del splitedList[-1] #remove '\n'
         allData += splitedList
-        
+
     dataFile.close()
     return list(map(int, allData)) # convert to int

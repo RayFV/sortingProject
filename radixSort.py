@@ -3,7 +3,6 @@
 '''
 
 import math
-import readFile as rf
 
 def radixSort(dataList, radix=10):
     K = math.ceil(math.log(max(dataList)+1, radix))

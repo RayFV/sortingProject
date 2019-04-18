@@ -1,5 +1,3 @@
-import readFile as rf
-
 def quickSort(dataList, lowIndex, highIndex):
     if lowIndex >= highIndex:
         return

@@ -4,6 +4,7 @@ from bubbleSort import bubbleSort
 from insertionSort import insertionSort
 from quickSort import quickSort
 from radixSort import radixSort
+from selectionSort import selectionSort
 
 def main():
     testData = rf.getNumberDataList()
@@ -13,5 +14,6 @@ def main():
     runTest("radixSort", radixSort)
 
     runTest("insertionSort", insertionSort)
+    runTest("selectionSort", selectionSort)
 
 main()

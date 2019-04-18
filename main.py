@@ -5,6 +5,7 @@ from insertionSort import insertionSort
 from quickSort import quickSort
 from radixSort import radixSort
 from selectionSort import selectionSort
+from shellSort import shellSort
 
 def main():
     testData = rf.getNumberDataList()
@@ -15,5 +16,6 @@ def main():
 
     runTest("insertionSort", insertionSort)
     runTest("selectionSort", selectionSort)
+    runTest("shellSort", shellSort)
 
 main()

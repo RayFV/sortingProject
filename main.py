@@ -1,5 +1,5 @@
-from runTest import *
 import readFile as rf
+from runTest import *
 from bubbleSort import bubbleSort
 from quickSort import quickSort
 from radixSort import radixSort

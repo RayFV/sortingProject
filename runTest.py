@@ -8,7 +8,7 @@ def runTest(name, sortFunc, sortArgs = {}, printResult = False, testTimes = 1):
     testData = originData.copy()
 
     startTime = time.time()
-    for i in range(testTimes):
+    for _ in range(testTimes):
         testData = originData.copy()
         sortFunc(testData, **sortArgs)
     endTime = time.time()
@@ -16,7 +16,7 @@ def runTest(name, sortFunc, sortArgs = {}, printResult = False, testTimes = 1):
 
     if (printResult):
         print(testData)
-    print(" end  test sort [ " + name + " ], spend time: " + str(spendTime))
+    print(" end  test sort [ " + name + " ], spend time: " + str(spendTime) + " sec")
     if (not checkAnswer(testData)):
         print("** error")
         print("** this sort function get wrong answer **")

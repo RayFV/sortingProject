@@ -1,7 +1,7 @@
 FILENAME = "Test.dat"
 
 isLimit = True
-limit = 10000 #數量
+limit = 100000 #數量
 
 def getNumberDataList():
     allData = []

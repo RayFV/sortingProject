@@ -13,6 +13,9 @@ from heapSort import heapSort
 def main():
     testData = rf.getNumberDataList()
 
+    
+    runTest("countingSort", countingSort,baseAnswer=True)
+
     runTest("bubbleSort", bubbleSort)
     runTest("quickSort", quickSort, { "lowIndex": 0, "highIndex": len(testData) - 1 })
     runTest("radixSort", radixSort)
@@ -21,7 +24,6 @@ def main():
     runTest("selectionSort", selectionSort)
     runTest("shellSort", shellSort)
 
-    runTest("countingSort", countingSort)
     runTest("mergeSort", mergeSort)
     runTest("heapSort", heapSort)
 

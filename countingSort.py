@@ -1,51 +1,36 @@
-def countingSort(list):
-    max_number = find_max(list)
-
+def countingSort(dataList):
+    max_number = find_max(dataList)
     temp = [0] * (max_number + 1)
-    
-    count(list, temp)
-    
+    count(dataList, temp)
     modify(temp)
+    sort(dataList, temp)
 
-    return sort(list, temp)
-    
-def find_max(list):
-    max =  list[0]
-    
-    for i in list:
+
+def find_max(dataList):
+    max = dataList[0]
+
+    for i in dataList:
         if i > max:
             max = i
 
     return max
-    
-def count(list, temp):
-    for i in list:
+
+
+def count(dataList, temp):
+    for i in dataList:
         temp[i] = temp[i] + 1
-        
+
+
 def modify(temp):
     for i, d in enumerate(temp):
         if i > 0:
             temp[i] = temp[i - 1] + d
-            
-def sort(list, temp):
-    ans = [0] * len(list)
-    
-    for i in list:
-        ans[temp[i] - 1] = i
-        
+
+
+def sort(dataList, temp):
+    copy = dataList.copy()
+
+    for i in copy:
+        dataList[temp[i] - 1] = i
         temp[i] = temp[i] - 1
-        
-    return ans
-        
-if __name__ == '__main__':
-    file = open('./Desktop/Test.dat', 'r')
 
-    numbers = file.read().split()[:20]
-
-    file.close()
-    
-    numbers = [int(i) for i in numbers]
-    
-    print(numbers)
-
-    print(countingSort(numbers))

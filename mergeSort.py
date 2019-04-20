@@ -1,15 +1,15 @@
-def mergeSort(list):
-    return divide(list)
+def mergeSort(dataList):
+    dataList[:] = divide(dataList)
 
-def divide(list):
-    if len(list) < 2:
-        return list
+def divide(dataList):
+    if len(dataList) < 2:
+        return dataList
     
-    middle = int(len(list) / 2)
+    middle = int(len(dataList) / 2)
     
-    left = divide(list[:middle])
+    left = divide(dataList[:middle])
     
-    right = divide(list[middle:])
+    right = divide(dataList[middle:])
     
     return merge(left, right)
     
@@ -30,16 +30,3 @@ def merge(left, right):
         ans = ans + right
         
     return ans
-
-if __name__ == '__main__':
-    file = open('./Desktop/Test.dat', 'r')
-
-    numbers = file.read().split()[:20]
-
-    file.close()
-    
-    numbers = [int(i) for i in numbers]
-    
-    print(numbers)
-    
-    print(mergeSort(numbers))

@@ -1,12 +1,12 @@
-def heapSort(list):
-    heap_tree = build_heap_tree(list)
+def heapSort(dataList):
+    heap_tree = build_heap_tree(dataList)
 
-    return sort(heap_tree)
+    dataList[:] = sort(heap_tree)
     
-def build_heap_tree(list):
+def build_heap_tree(dataList):
     heap_tree = []
 
-    for i, d in enumerate(list):
+    for i, d in enumerate(dataList):
         heap_tree.append(d)
     
         while i > 0:
@@ -21,31 +21,31 @@ def build_heap_tree(list):
     
     return heap_tree
     
-def sort(list):
+def sort(dataList):
     ans = []
 
-    while len(list) > 0:
-        list[0], list[-1] = list[-1], list[0]
+    while len(dataList) > 0:
+        dataList[0], dataList[-1] = dataList[-1], dataList[0]
         
-        ans.append(list.pop())
+        ans.append(dataList.pop())
         
         root = 0
         
         while True:
-            if len(list) > root * 2 + 2:
-                min_index = root * 2 + 1 if list[root * 2 + 1] < list[root * 2 + 2] else root * 2 + 2
+            if len(dataList) > root * 2 + 2:
+                min_index = root * 2 + 1 if dataList[root * 2 + 1] < dataList[root * 2 + 2] else root * 2 + 2
                 
-                if list[root] > list[min_index]:
-                    list[root], list[min_index] = list[min_index], list[root]
+                if dataList[root] > dataList[min_index]:
+                    dataList[root], dataList[min_index] = dataList[min_index], dataList[root]
                 
                     root = min_index
                     
                 else:
                     break
                 
-            elif len(list) > root * 2 + 1:
-                if list[root] > list[root * 2 + 1]:
-                    list[root], list[root * 2 + 1] = list[root * 2 + 1], list[root]
+            elif len(dataList) > root * 2 + 1:
+                if dataList[root] > dataList[root * 2 + 1]:
+                    dataList[root], dataList[root * 2 + 1] = dataList[root * 2 + 1], dataList[root]
                 
                 else:
                     break
@@ -55,15 +55,3 @@ def sort(list):
     
     return ans
     
-if __name__ == '__main__':
-    file = open('Test.dat', 'r')
-
-    numbers = file.read().split()[:20]
-
-    file.close()
-    
-    numbers = [int(i) for i in numbers]
-    
-    print(numbers)
-    
-    print(heapSort(numbers))

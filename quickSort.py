@@ -1,13 +1,17 @@
 def quickSort(dataList, lowIndex, highIndex):
-    if lowIndex >= highIndex:
-        return
+    while lowIndex < highIndex:
 
-    pivot = dataList[highIndex]
-    headIndex = lowIndex
-    for i in range(lowIndex, highIndex+1):
-        if(dataList[i] <= pivot):
-            dataList[i], dataList[headIndex] = dataList[headIndex], dataList[i]
-            headIndex += 1
+        pivot = dataList[highIndex]
+        headIndex = lowIndex
+        for i in range(lowIndex, highIndex+1):
+            if(dataList[i] <= pivot):
+                dataList[i], dataList[headIndex] = dataList[headIndex], dataList[i]
+                headIndex += 1
 
-    quickSort(dataList, lowIndex, headIndex-2)
-    quickSort(dataList, headIndex, highIndex)
+        if (headIndex - lowIndex < highIndex - headIndex):
+            quickSort(dataList, lowIndex, headIndex - 2)
+            lowIndex = headIndex
+        else:
+            quickSort(dataList, headIndex, highIndex)
+            highIndex = headIndex - 2
+

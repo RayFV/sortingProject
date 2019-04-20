@@ -1,6 +1,6 @@
 FILENAME = "Test.dat"
 
-isLimit = True
+isLimit = False
 limit = 100000 #數量
 
 def getNumberDataList():

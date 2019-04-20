@@ -14,7 +14,9 @@ def runTest(name, sortFunc, sortArgs = {}, printResult = False, testTimes = 1,ba
     endTime = time.time()
     spendTime = endTime - startTime
 
-    print(" end  test sort [ " + name + " ], spend time: " + str(spendTime) + " sec")
+    mins = int(spendTime // 60)
+    secs = spendTime % 60
+    print(" end  test sort [ " + name + " ], spend time: " + str(mins) + " mins, " + str(secs) + " secs")
     
     if (printResult):
         print(testData)

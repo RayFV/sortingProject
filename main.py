@@ -13,18 +13,17 @@ from heapSort import heapSort
 def main():
     testData = rf.getNumberDataList()
 
-    
     runTest("countingSort", countingSort,baseAnswer=True)
 
-    runTest("bubbleSort", bubbleSort)
-    runTest("quickSort", quickSort, { "lowIndex": 0, "highIndex": len(testData) - 1 })
     runTest("radixSort", radixSort)
+    runTest("quickSort", quickSort, { "lowIndex": 0, "highIndex": len(testData) - 1 })
+    runTest("mergeSort", mergeSort)
+    runTest("heapSort", heapSort)
 
     runTest("insertionSort", insertionSort)
     runTest("selectionSort", selectionSort)
     runTest("shellSort", shellSort)
+    runTest("bubbleSort", bubbleSort)
 
-    runTest("mergeSort", mergeSort)
-    runTest("heapSort", heapSort)
 
 main()

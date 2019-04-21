@@ -2,7 +2,7 @@ import multiprocessing
 from functools import reduce
 from selectionSort import selectionSort
 
-def multiSelectionSort(dataList, processNumber=0):
+def multiSelectionSort(dataList):
     pool = multiprocessing.Pool()
     dataList = splitRun(pool, dataList, int(len(dataList) ** 0.5))
 

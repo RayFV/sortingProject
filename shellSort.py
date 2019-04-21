@@ -6,13 +6,15 @@ def shellSort(dataList):
     _insertionSort(dataList, 1)
 
 def _insertionSort(dataList, gap = 1):
-    dataListLen = len(dataList)
-    i = gap
-    while (i < dataListLen):
-        currentNumber = dataList[i]
-        j = i - gap
-        while ((j >= 0) and (dataList[j] > currentNumber)):
-            dataList[j + gap] = dataList[j]
-            j -= gap
-        dataList[j + gap] = currentNumber
-        i += gap
+    startIndex = gap
+    while (startIndex < gap*2):
+        i = startIndex
+        while (i < len(dataList)):
+            currentNumber = dataList[i]
+            j = i - gap
+            while ((j >= 0) and (dataList[j] > currentNumber)):
+                dataList[j + gap] = dataList[j]
+                j -= gap
+            dataList[j + gap] = currentNumber
+            i += gap
+        startIndex += 1

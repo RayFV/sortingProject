@@ -4,22 +4,22 @@ from selectionSort import selectionSort
 
 def multiSelectionSort(dataList, processNumber=0):
     pool = multiprocessing.Pool()
-    dataList = splitRun(pool, dataList)
+    dataList = splitRun(pool, dataList, int(len(dataList) ** 0.5))
 
     return dataList
 
 def defaultProcessNumber():
     return multiprocessing.cpu_count()
 
-def splitRun(pool, dataList):
+def splitRun(pool, dataList, targetListLen = 10000):
     multiDataList = []
     for i in range(defaultProcessNumber()):
         multiDataList.append([])
     for i in range(len(dataList)):
         multiDataList[i%len(multiDataList)].append(dataList[i])
 
-    if (len(multiDataList[-1]) > 10000):
-        return mergeMultiList(list(map((lambda l: splitRun(pool, l)), multiDataList)))
+    if (len(multiDataList[-1]) > targetListLen):
+        return mergeMultiList(list(map((lambda l: splitRun(pool, l, targetListLen)), multiDataList)))
     else:
         return mergeMultiList(pool.map(selectionSort, multiDataList))
 

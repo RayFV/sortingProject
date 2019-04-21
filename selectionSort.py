@@ -9,3 +9,4 @@ def selectionSort(dataList):
             minNumber = dataList[minIndex]
             dataList[minIndex] = dataList[i]
             dataList[i] = minNumber
+    return dataList

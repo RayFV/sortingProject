@@ -9,6 +9,7 @@ from shellSort import shellSort
 from countingSort import countingSort
 from mergeSort import mergeSort
 from heapSort import heapSort
+from multiInsertionSort import multiInsertionSort
 from multiSelectionSort import multiSelectionSort
 
 def main():
@@ -17,6 +18,7 @@ def main():
     runTest("countingSort", countingSort,baseAnswer=True)
 
     runTest("multi core SelectionSort", multiSelectionSort)
+    runTest("multi core InsertionSort", multiInsertionSort)
 
     runTest("radixSort", radixSort)
     runTest("quickSort", quickSort, { "lowIndex": 0, "highIndex": len(testData) - 1 })

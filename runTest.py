@@ -5,7 +5,7 @@ from checkAnswer import checkAnswer, setAnswer
 def runTest(name, sortFunc, sortArgs = {}, printResult = False, testTimes = 1,baseAnswer=False):
     originData = rf.getNumberDataList()
     testData = originData.copy()
-    print("start test sort [ " + name  + " ], test times: " + str(testTimes))
+    print("start test sort [ " + name  + " ], test times: " + str(testTimes) + ", length of list: " + str(len(testData)))
 
     startTime = time.time()
     for _ in range(testTimes):

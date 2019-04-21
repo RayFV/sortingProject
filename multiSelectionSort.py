@@ -3,18 +3,6 @@ from functools import reduce
 from selectionSort import selectionSort
 
 def multiSelectionSort(dataList, processNumber=0):
-    # if (processNumber < 1):
-    #     processNumber = defaultProcessNumber()
-    # multiDataList = []
-    # for i in range(processNumber):
-    #     multiDataList.append([])
-    # for i in range(len(dataList)):
-    #     multiDataList[i%len(multiDataList)].append(dataList[i])
-
-    # pool = multiprocessing.Pool()
-    # multiDataList = pool.map(selectionSort, multiDataList)
-    # dataList = mergeMultiList(multiDataList)
-
     pool = multiprocessing.Pool()
     dataList = splitRun(pool, dataList)
 
@@ -34,8 +22,6 @@ def splitRun(pool, dataList):
         return mergeMultiList(list(map((lambda l: splitRun(pool, l)), multiDataList)))
     else:
         return mergeMultiList(pool.map(selectionSort, multiDataList))
-
-
 
 def findMinList(multiDataList):
     multiDataList = list(filter(lambda l: len(l) > 0, multiDataList))

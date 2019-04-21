@@ -10,14 +10,16 @@ def runTest(name, sortFunc, sortArgs = {}, printResult = False, testTimes = 1,ba
     startTime = time.time()
     for _ in range(testTimes):
         testData = originData.copy()
-        sortFunc(testData, **sortArgs)
+        result = sortFunc(testData, **sortArgs)
+        if (result != None):
+            testData = result
     endTime = time.time()
     spendTime = endTime - startTime
 
     mins = int(spendTime // 60)
     secs = spendTime % 60
     print(" end  test sort [ " + name + " ], spend time: " + str(mins) + " mins, " + str(secs) + " secs")
-    
+
     if (printResult):
         print(testData)
 

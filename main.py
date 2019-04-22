@@ -11,6 +11,7 @@ from mergeSort import mergeSort
 from heapSort import heapSort
 from multiBubbleSort import multiBubbleSort
 from multiInsertionSort import multiInsertionSort
+from multiMergeSort import multiMergeSort
 from multiSelectionSort import multiSelectionSort
 
 def main():
@@ -18,6 +19,7 @@ def main():
 
     runTest("countingSort", countingSort,baseAnswer=True)
 
+    runTest("multi core MergeSort", multiMergeSort)
     runTest("multi core SelectionSort", multiSelectionSort)
     runTest("multi core InsertionSort", multiInsertionSort)
     runTest("multi core BubbleSort", multiBubbleSort)

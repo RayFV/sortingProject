@@ -1,13 +1,15 @@
 import multiprocessing
 from functools import reduce
 
-def multiProcessRunSort(dataList, sortFunc, mergeMultiList = None, targetListLen = 0):
+def multiProcessRunSort(dataList, sortFunc, mergeMultiList = None, targetListLen = 0, splitNumber = 0, shouldSort = True):
     if (mergeMultiList == None):
         mergeMultiList = defaultMergeMultiList
     if (targetListLen < 1):
         targetListLen = int(len(dataList) ** 0.5)
+    if (splitNumber < 1):
+        splitNumber = defaultProcessNumber()
 
-    dataList = splitRun(dataList, sortFunc, mergeMultiList, targetListLen)
+    dataList = splitRun(dataList, sortFunc, mergeMultiList, targetListLen, splitNumber, shouldSort)
     return dataList
 
 def defaultMergeMultiList(multiList):
@@ -18,9 +20,11 @@ def defaultMergeMultiList(multiList):
 
 
 
-def splitRun(dataList, sortFunc, mergeMultiList, targetListLen):
-    topNode = splitListToTargetListLen(dataList, targetListLen)
-    sortForEveryDataList(topNode, sortFunc)
+def splitRun(dataList, sortFunc, mergeMultiList, targetListLen, splitNumber, shouldSort):
+    topNode = splitListToTargetListLen(dataList, targetListLen, splitNumber)
+    if (shouldSort):
+        # only merge sort will close this
+        sortForEveryDataList(topNode, sortFunc)
     mergeAllNodeToTop(topNode, mergeMultiList)
 
     dataList = topNode.list
@@ -50,13 +54,13 @@ class Node:
         return type(self.list[0]) is not Node
 
 
-def splitListToTargetListLen(dataList, targetListLen):
+def splitListToTargetListLen(dataList, targetListLen, splitNumber):
     topNode = Node()
-    topNode.list = splitListToNodeList(dataList, topNode)
+    topNode.list = splitListToNodeList(dataList, topNode, splitNumber)
     deepList = getDeepList(topNode)
-    while (len(deepList[-1].list) > targetListLen):
+    while (len(deepList[0].list) > targetListLen):
         for node in deepList:
-            node.list = splitListToNodeList(node.list, node)
+            node.list = splitListToNodeList(node.list, node, splitNumber)
         deepList = getDeepList(topNode)
     return topNode
 
@@ -84,12 +88,17 @@ def mergeAllNodeToTop(topNode, mergeMultiList):
 
 def getDeepList(multiNodeList, top = 0):
     deepList = multiNodeList.list
+    topList = [multiNodeList]
     while (not deepList[0].isData()):
         newDeepList = []
         for node in deepList:
             newDeepList.extend(node.list)
+        topList = deepList
         deepList = newDeepList
 
+    if (top > 0):
+        deepList = topList
+        top -= 1
     while (top > 0):
         topList = []
         for node in deepList:
@@ -106,15 +115,17 @@ def getListFromNodeList(nodeList):
         newList.append(node.list)
     return newList
 
-def splitListToNodeList(dataList, top = None):
-    nodeList = splitList(dataList)
+def splitListToNodeList(dataList, top = None, splitNumber = 0):
+    nodeList = splitList(dataList, splitNumber)
     for i in range(len(nodeList)):
         nodeList[i] = Node(nodeList[i], top)
     return nodeList
 
-def splitList(dataList):
+def splitList(dataList, splitNumber = 0):
+    if (splitNumber < 1):
+        splitNumber = defaultProcessNumber()
     multiDataList = []
-    for i in range(defaultProcessNumber()):
+    for i in range(splitNumber):
         multiDataList.append([])
     for i in range(len(dataList)):
         multiDataList[i%len(multiDataList)].append(dataList[i])

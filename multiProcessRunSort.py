@@ -1,6 +1,35 @@
 import multiprocessing
 from functools import reduce
 
+def multiProcessRunSort(dataList, sortFunc, mergeMultiList = None, targetListLen = 0):
+    if (mergeMultiList == None):
+        mergeMultiList = defaultMergeMultiList
+    if (targetListLen < 1):
+        targetListLen = int(len(dataList) ** 0.5)
+
+    dataList = splitRun(dataList, sortFunc, mergeMultiList, targetListLen)
+    return dataList
+
+def defaultMergeMultiList(multiList):
+    newList = [0] * reduce((lambda x, y: x + len(y)), multiList, 0)
+    for i in range(len(newList)):
+        newList[i] = multiList[i%len(multiList)][i//len(multiList)]
+    return newList
+
+
+
+def splitRun(dataList, sortFunc, mergeMultiList, targetListLen):
+    topNode = splitListToTargetListLen(dataList, targetListLen)
+    sortForEveryDataList(topNode, sortFunc)
+    mergeAllNodeToTop(topNode, mergeMultiList)
+
+    dataList = topNode.list
+    return dataList
+
+
+def defaultProcessNumber():
+    return multiprocessing.cpu_count()
+
 class Pool:
     _instance = None
     def __init__():
@@ -11,14 +40,6 @@ class Pool:
             Pool._instance = multiprocessing.Pool(defaultProcessNumber())
         return Pool._instance
 
-def multiProcessRunSort(dataList, sortFunc, mergeMultiList = None, targetListLen = 0):
-    if (mergeMultiList == None):
-        mergeMultiList = defaultMergeMultiList
-    if (targetListLen < 1):
-        targetListLen = int(len(dataList) ** 0.5)
-
-    dataList = splitRun(dataList, sortFunc, mergeMultiList, targetListLen)
-    return dataList
 
 class Node:
     def __init__(self, dataList = [], topNode = None):
@@ -28,13 +49,6 @@ class Node:
     def isData(self):
         return type(self.list[0]) is not Node
 
-def splitRun(dataList, sortFunc, mergeMultiList, targetListLen):
-    topNode = splitListToTargetListLen(dataList, targetListLen)
-    sortForEveryDataList(topNode, sortFunc)
-    mergeAllNodeToTop(topNode, mergeMultiList)
-
-    dataList = topNode.list
-    return dataList
 
 def splitListToTargetListLen(dataList, targetListLen):
     topNode = Node()
@@ -65,6 +79,8 @@ def mergeAllNodeToTop(topNode, mergeMultiList):
         for i in range(len(deepList)):
             deepList[i].list = mergedLists[i]
     return topNode
+
+
 
 def getDeepList(multiNodeList, top = 0):
     deepList = multiNodeList.list
@@ -103,12 +119,3 @@ def splitList(dataList):
     for i in range(len(dataList)):
         multiDataList[i%len(multiDataList)].append(dataList[i])
     return multiDataList
-
-def defaultProcessNumber():
-    return multiprocessing.cpu_count()
-
-def defaultMergeMultiList(multiList):
-    newList = [0] * reduce((lambda x, y: x + len(y)), multiList, 0)
-    for i in range(len(newList)):
-        newList[i] = multiList[i%len(multiList)][i//len(multiList)]
-    return newList

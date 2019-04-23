@@ -9,11 +9,20 @@ from shellSort import shellSort
 from countingSort import countingSort
 from mergeSort import mergeSort
 from heapSort import heapSort
+from multiBubbleSort import multiBubbleSort
+from multiInsertionSort import multiInsertionSort
+from multiMergeSort import multiMergeSort
+from multiSelectionSort import multiSelectionSort
 
 def main():
     testData = rf.getNumberDataList()
 
     runTest("countingSort", countingSort,baseAnswer=True)
+
+    runTest("multi core MergeSort", multiMergeSort)
+    runTest("multi core SelectionSort", multiSelectionSort)
+    runTest("multi core InsertionSort", multiInsertionSort)
+    runTest("multi core BubbleSort", multiBubbleSort)
 
     runTest("radixSort", radixSort)
     runTest("quickSort", quickSort, { "lowIndex": 0, "highIndex": len(testData) - 1 })
@@ -25,5 +34,5 @@ def main():
     runTest("shellSort", shellSort)
     runTest("bubbleSort", bubbleSort)
 
-
-main()
+if __name__ == "__main__":
+    main()

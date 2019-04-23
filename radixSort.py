@@ -17,3 +17,22 @@ def radixSort(dataList, radix=10):
 
         for bucket in bucketList:
             dataList += bucket
+
+            
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.first = None
+        self.last = None
+
+    def addFirst(self, node):
+        node.next = self.first
+        self.first = node
+
+    def addLast(self, node):
+        self.last.next = node
+        self.last = node

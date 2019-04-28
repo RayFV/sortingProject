@@ -19,20 +19,19 @@ def main():
 
     runTest("countingSort", countingSort,baseAnswer=True)
 
+    runTest("radixSort", radixSort)
+    runTest("quickSort", quickSort, { "lowIndex": 0, "highIndex": len(testData) - 1 })
+    runTest("heapSort", heapSort)
+    runTest("mergeSort", mergeSort)
+    runTest("shellSort", shellSort)
     runTest("multi core MergeSort", multiMergeSort)
     runTest("multi core SelectionSort", multiSelectionSort)
     runTest("multi core InsertionSort", multiInsertionSort)
     runTest("multi core BubbleSort", multiBubbleSort)
 
-    runTest("radixSort", radixSort)
-    runTest("quickSort", quickSort, { "lowIndex": 0, "highIndex": len(testData) - 1 })
-    runTest("mergeSort", mergeSort)
-    runTest("heapSort", heapSort)
-
-    runTest("insertionSort", insertionSort)
-    runTest("selectionSort", selectionSort)
-    runTest("shellSort", shellSort)
-    runTest("bubbleSort", bubbleSort)
+    # runTest("insertionSort", insertionSort)
+    # runTest("selectionSort", selectionSort)
+    # runTest("bubbleSort", bubbleSort)
 
 if __name__ == "__main__":
     main()

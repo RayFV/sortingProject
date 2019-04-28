@@ -1,7 +1,7 @@
 import multiprocessing
 from functools import reduce
-from multiProcessRunSort import multiProcessRunSort
-from selectionSort import selectionSort
+from .multiProcessRunSort import multiProcessRunSort
+from .selectionSort import selectionSort
 
 def multiSelectionSort(dataList):
     dataList = multiProcessRunSort(dataList, selectionSort, mergeMultiList)

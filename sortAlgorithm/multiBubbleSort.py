@@ -1,6 +1,6 @@
 import multiprocessing
-from multiProcessRunSort import multiProcessRunSort, defaultMergeMultiList
-from bubbleSort import bubbleSort
+from .multiProcessRunSort import multiProcessRunSort, defaultMergeMultiList
+from .bubbleSort import bubbleSort
 
 def multiBubbleSort(dataList):
     dataList = multiProcessRunSort(dataList, bubbleSort, mergeMultiList)

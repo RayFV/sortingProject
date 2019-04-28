@@ -1,6 +1,6 @@
 import multiprocessing
-from multiProcessRunSort import multiProcessRunSort, defaultMergeMultiList
-from insertionSort import insertionSort
+from .multiProcessRunSort import multiProcessRunSort, defaultMergeMultiList
+from .insertionSort import insertionSort
 
 def multiInsertionSort(dataList):
     dataList = multiProcessRunSort(dataList, insertionSort, mergeMultiList)

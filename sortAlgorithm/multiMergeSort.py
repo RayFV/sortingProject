@@ -1,6 +1,6 @@
 import multiprocessing
 from functools import reduce
-from multiProcessRunSort import multiProcessRunSort
+from .multiProcessRunSort import multiProcessRunSort
 
 def multiMergeSort(dataList, splitNumber = 16):
     # 依照 merge sort 的原始定義, splitNumber 應設為 2, 即每次切 2 份

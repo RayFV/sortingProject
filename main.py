@@ -1,18 +1,18 @@
 import readFile as rf
 from runTest import *
-from bubbleSort import bubbleSort
-from insertionSort import insertionSort
-from quickSort import quickSort
-from radixSort import radixSort
-from selectionSort import selectionSort
-from shellSort import shellSort
-from countingSort import countingSort
-from mergeSort import mergeSort
-from heapSort import heapSort
-from multiBubbleSort import multiBubbleSort
-from multiInsertionSort import multiInsertionSort
-from multiMergeSort import multiMergeSort
-from multiSelectionSort import multiSelectionSort
+from sortAlgorithm.bubbleSort import bubbleSort
+from sortAlgorithm.insertionSort import insertionSort
+from sortAlgorithm.quickSort import quickSort
+from sortAlgorithm.radixSort import radixSort
+from sortAlgorithm.selectionSort import selectionSort
+from sortAlgorithm.shellSort import shellSort
+from sortAlgorithm.countingSort import countingSort
+from sortAlgorithm.mergeSort import mergeSort
+from sortAlgorithm.heapSort import heapSort
+from sortAlgorithm.multiBubbleSort import multiBubbleSort
+from sortAlgorithm.multiInsertionSort import multiInsertionSort
+from sortAlgorithm.multiMergeSort import multiMergeSort
+from sortAlgorithm.multiSelectionSort import multiSelectionSort
 
 def main():
     testData = rf.getNumberDataList()

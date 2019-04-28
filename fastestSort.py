@@ -1,9 +1,9 @@
 import time
-from countingSort import countingSort
+from sortAlgorithm.countingSort import countingSort
 
 FILENAME = "Test.dat"
 
-def runTest():
+def main():
     startTime = time.time()
     print("start [ countingSort ]")
 
@@ -26,5 +26,5 @@ def runTest():
     secs = spendTime % 60
     print(" end [ countingSort ], spend time: " + str(mins) + " mins, " + str(secs) + " secs")
 
-
-runTest()
+if __name__ == '__main__':
+    main()

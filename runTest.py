@@ -4,8 +4,8 @@ from checkAnswer import checkAnswer, setAnswer
 
 def runTest(name, sortFunc, sortArgs = {}, printResult = False, testTimes = 1,baseAnswer=False):
     originData = rf.getNumberDataList()
-    testData = originData.copy()
-    print("start test sort [ " + name  + " ], test times: " + str(testTimes) + ", length of list: " + str(len(testData)))
+    testData = []
+    print("start test sort [ " + name  + " ], test times: " + str(testTimes) + ", length of list: " + str(len(originData)))
 
     startTime = time.time()
     for _ in range(testTimes):

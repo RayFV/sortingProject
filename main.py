@@ -19,7 +19,7 @@ def main():
 
     runTest("countingSort", countingSort,baseAnswer=True)
 
-    runTest("radixSort", radixSort)
+    runTest("radixSort", radixSort, { "radix": 1000 })
     runTest("quickSort", quickSort, { "lowIndex": 0, "highIndex": len(testData) - 1 })
     runTest("heapSort", heapSort)
     runTest("mergeSort", mergeSort)

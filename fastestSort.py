@@ -1,30 +1,56 @@
 import time
-from sortAlgorithm.countingSort import countingSort
 
 FILENAME = "Test.dat"
 
-def main():
-    startTime = time.time()
-    print("start [ countingSort ]")
 
+def main():
     testData = []
-    dataFile = open(FILENAME,"r")
+    dataFile = open(FILENAME, "r")
+
     for line in dataFile:
-        splitedList = line.split(" ")
-        del splitedList[-1] #remove '\n'
-        testData += splitedList
+        testData += list(map(int, line.split()))
 
     dataFile.close()
-    
-    testData = list(map(int, testData)) # convert to int
+
     countingSort(testData)
 
-    endTime = time.time()
-    spendTime = endTime - startTime
 
-    mins = int(spendTime // 60)
-    secs = spendTime % 60
-    print(" end [ countingSort ], spend time: " + str(mins) + " mins, " + str(secs) + " secs")
+def countingSort(dataList):
+    max_number = find_max(dataList)
+    temp = [0] * (max_number + 1)
+    count(dataList, temp)
+    modify(temp)
+    sort(dataList, temp)
+
+
+def find_max(dataList):
+    max = dataList[0]
+
+    for i in dataList:
+        if i > max:
+            max = i
+
+    return max
+
+
+def count(dataList, temp):
+    for i in dataList:
+        temp[i] = temp[i] + 1
+
+
+def modify(temp):
+    for i, d in enumerate(temp):
+        if i > 0:
+            temp[i] = temp[i - 1] + d
+
+
+def sort(dataList, temp):
+    copy = dataList.copy()
+
+    for i in copy:
+        dataList[temp[i] - 1] = i
+        temp[i] = temp[i] - 1
+
 
 if __name__ == '__main__':
     main()
